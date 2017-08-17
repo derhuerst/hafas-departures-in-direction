@@ -17,7 +17,7 @@ npm install vbb-departures-in-direction
 
 ## Usage
 
-Specify the direction as the *next station* after the one you're querying departures for.
+Specify the direction as the *next station* after the one you're querying departures for. `depsInDirection` will then query departures, advancing the time until it found enough results or sent enough requests.
 
 ```js
 const depsInDirection = require('vbb-departures-in-direction')
@@ -28,6 +28,22 @@ const brandenburgerTor = '900000100025' // direction
 depsInDirection(friedrichstr, brandenburgerTor)
 .then(console.log)
 .catch(console.error)
+```
+
+## API
+
+```js
+depsInDirection(station, direction, [opt])
+```
+
+`opt` overrides the following defaults:
+
+```js
+{
+	concurrency: 4, // max nr. of parallel requests
+	results: 10, // nr. of results to collect
+	maxQueries: 10 // max nr. of requests
+}
 ```
 
 
