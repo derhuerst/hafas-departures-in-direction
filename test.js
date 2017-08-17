@@ -2,6 +2,7 @@
 
 const test = require('tape')
 const floor = require('floordate')
+const isRoughlyEqual = require('is-roughly-equal')
 
 const depsInDirection = require('.')
 
@@ -22,7 +23,7 @@ const assertValidWhen = (t, w, tolerance = hour) => {
 }
 
 test('depsInDirection', (t) => {
-	depsInDirection(friedrichstr, brandenburgerTor)
+	depsInDirection(friedrichstr, brandenburgerTor, {when})
 	.then((deps) => {
 		t.ok(Array.isArray(deps))
 		t.ok(deps.length > 0)
@@ -32,6 +33,8 @@ test('depsInDirection', (t) => {
 			t.equal(typeof dep.ref, 'string')
 			t.ok(dep.ref)
 			t.equal(dep.station.id, friedrichstr)
+
+			assertValidWhen(t, dep.when)
 		}
 	})
 	.catch(t.ifError)
