@@ -1,7 +1,7 @@
 {
 	"name": "vbb-departures-in-direction",
 	"description": "Get departures at a VBB station in a certain direction.",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"main": "index.js",
 	"files": [
 		"index.js"
@@ -21,6 +21,7 @@
 		"node": ">=6"
 	},
 	"dependencies": {
+		"lodash.omit": "^4.5.0",
 		"p-queue": "^1.1.0",
 		"vbb-hafas": "^2.2.0"
 	},

@@ -3,6 +3,7 @@
 const Queue = require('p-queue')
 const departures = require('vbb-hafas/lib/departures')
 const journeyPart = require('vbb-hafas/lib/journey-part')
+const omit = require('lodash.omit')
 
 const minute = 60 * 1000
 
@@ -17,8 +18,14 @@ const depsInDirection = (station, direction, opt = {}) => {
 		opt = Object.assign({}, defaults, opt)
 
 		const res = []
-		let when = Date.now(), queries = 0, stop = false
 		const queue = new Queue({concurrency: opt.concurrency})
+
+		let when = Date.now()
+		if (opt.when) {
+			if (Number.isNaN(+opt.when)) throw new Error('invalid when parameter')
+			when = +opt.when
+		}
+		let queries = 0, stop = false
 
 		const checkDep = (dep) => () => {
 			if (stop) return Promise.resolve()
@@ -37,7 +44,11 @@ const depsInDirection = (station, direction, opt = {}) => {
 		}
 
 		const loop = () => {
-			departures(station, {when: new Date(when), duration: 5})
+			const _opt = omit(opt, ['concurrency', 'results', 'maxQueries'])
+			_opt.when = when
+			_opt.duration = 5
+
+			departures(station, _opt)
 			.then((deps) => {
 				for (let dep of deps) queue.add(checkDep(dep))
 				return queue.onEmpty()
