@@ -1,5 +1,7 @@
 # vbb-departures-in-direction
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/derhuerst/vbb-departures-in-direction.svg)](https://greenkeeper.io/)
+
 **Get departures at a VBB station in a certain direction.** Uses [vbb-hafas](https://github.com/derhuerst/vbb-hafas).
 
 [![npm version](https://img.shields.io/npm/v/vbb-departures-in-direction.svg)](https://www.npmjs.com/package/vbb-departures-in-direction)
