@@ -43,7 +43,7 @@ depsInDirection(station, direction, [opt])
 	concurrency: 4, // max nr. of parallel requests
 	results: 10, // nr. of results to collect
 	maxQueries: 10, // max nr. of requests
-	when: 0 // time in ms to offset departure time
+	when: 0 // time in ms since epoch
 }
 ```
 
