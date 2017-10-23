@@ -1,10 +1,12 @@
 'use strict'
 
+const departures = require('vbb-hafas/lib/departures')
+const journeyPart = require('vbb-hafas/lib/journey-part')
 const test = require('tape')
 const floor = require('floordate')
 const isRoughlyEqual = require('is-roughly-equal')
 
-const depsInDirection = require('.')
+const setup = require('.')
 
 const friedrichstr = '900000100001'
 const brandenburgerTor = '900000100025'
@@ -21,6 +23,8 @@ const assertValidWhen = (t, w, tolerance = hour) => {
 	t.ok(!Number.isNaN(ts))
 	t.ok(isRoughlyEqual(tolerance, +when, ts))
 }
+
+const depsInDirection = setup(departures, journeyPart)
 
 test('depsInDirection', (t) => {
 	depsInDirection(friedrichstr, brandenburgerTor, {when})

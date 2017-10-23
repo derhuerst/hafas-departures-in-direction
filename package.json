@@ -1,21 +1,21 @@
 {
-	"name": "vbb-departures-in-direction",
-	"description": "Get departures at a VBB station in a certain direction.",
-	"version": "0.2.0",
+	"name": "hafas-departures-in-direction",
+	"description": "Pass in a HAFAS client, get departures in a certain direction.",
+	"version": "0.1.0",
 	"main": "index.js",
 	"files": [
 		"index.js"
 	],
 	"keywords": [
-		"vbb",
+		"hafas",
 		"public transport",
 		"transit",
 		"departures"
 	],
 	"author": "Jannis R <mail@jannisr.de>",
-	"homepage": "https://github.com/derhuerst/vbb-departures-in-direction",
-	"repository": "derhuerst/vbb-departures-in-direction",
-	"bugs": "https://github.com/derhuerst/vbb-departures-in-direction/issues",
+	"homepage": "https://github.com/derhuerst/hafas-departures-in-direction",
+	"repository": "derhuerst/hafas-departures-in-direction",
+	"bugs": "https://github.com/derhuerst/hafas-departures-in-direction/issues",
 	"license": "ISC",
 	"engines": {
 		"node": ">=6"
