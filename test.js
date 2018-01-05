@@ -1,7 +1,6 @@
 'use strict'
 
-const departures = require('vbb-hafas/lib/departures')
-const journeyPart = require('vbb-hafas/lib/journey-part')
+const hafas = require('vbb-hafas')
 const test = require('tape')
 const floor = require('floordate')
 const isRoughlyEqual = require('is-roughly-equal')
@@ -24,7 +23,7 @@ const assertValidWhen = (t, w, tolerance = hour) => {
 	t.ok(isRoughlyEqual(tolerance, +when, ts))
 }
 
-const depsInDirection = setup(departures, journeyPart)
+const depsInDirection = setup(hafas.departures, hafas.journeyLeg)
 
 test('depsInDirection', (t) => {
 	depsInDirection(friedrichstr, brandenburgerTor, {when})
@@ -34,8 +33,8 @@ test('depsInDirection', (t) => {
 		// t.deepEqual(deps, deps.sort((a, b) => t.when > b.when))
 
 		for (let dep of deps) {
-			t.equal(typeof dep.ref, 'string')
-			t.ok(dep.ref)
+			t.equal(typeof dep.journeyId, 'string')
+			t.ok(dep.journeyId)
 			t.equal(dep.station.id, friedrichstr)
 
 			assertValidWhen(t, dep.when)

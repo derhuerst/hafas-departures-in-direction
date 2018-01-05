@@ -11,7 +11,7 @@ const defaults = {
 	maxQueries: 10
 }
 
-const setup = (departures, journeyPart) => {
+const setup = (departures, journeyLeg) => {
 	const depsInDirection = (station, direction, opt = {}) => {
 		return new Promise((yay, nay) => {
 			opt = Object.assign({}, defaults, opt)
@@ -29,7 +29,7 @@ const setup = (departures, journeyPart) => {
 			const checkDep = (dep) => () => {
 				if (stop) return Promise.resolve()
 
-				return journeyPart(dep.ref, dep.line.name, {when})
+				return journeyLeg(dep.journeyId, dep.line.name, {when})
 				.then((journey) => {
 					// todo: use stationOf index?
 					const i = journey.passed.findIndex(p => p.station.id === station)
