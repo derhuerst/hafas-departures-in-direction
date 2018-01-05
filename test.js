@@ -1,8 +1,8 @@
 'use strict'
 
+const {DateTime} = require('luxon')
 const hafas = require('vbb-hafas')
 const test = require('tape')
-const floor = require('floordate')
 const isRoughlyEqual = require('is-roughly-equal')
 
 const setup = require('.')
@@ -11,10 +11,12 @@ const friedrichstr = '900000100001'
 const brandenburgerTor = '900000100025'
 
 const hour = 60 * 60 * 1000
-const week = 7 * 24 * hour
 
-// next Monday
-const when = new Date(+floor(new Date(), 'week') + week + 10 * hour)
+// next Monday 10 am
+const when = DateTime.fromMillis(Date.now(), {
+	zone: 'Europe/Berlin',
+	locale: 'de-DE'
+}).startOf('week').plus({weeks: 1, hours: 10}).toJSDate()
 
 const assertValidWhen = (t, w, tolerance = hour) => {
 	t.equal(typeof w, 'string')
