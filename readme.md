@@ -21,13 +21,12 @@ Pass in your [`vbb-hafas`](https://github.com/derhuerst/vbb-hafas#vbb-hafas)-com
 
 ```js
 const setup = require('hafas-departures-in-direction')
-const departures = require('vbb-hafas/lib/departures')
-const journeyPart = require('vbb-hafas/lib/journey-part')
+const hafas = require('vbb-hafas')
 
-const depsInDirection = setup(departures, journeyPart)
+const depsInDirection = setup(hafas.departures, hafas.journeyLeg)
 ```
 
-Specify the direction as the *next station* after the one you're querying departures for. `depsInDirection` will then query departures, advancing the time until it found enough results or sent enough requests.
+Specify the direction as the *next station* after the one you're querying departures for. `depsInDirection` will then query departures, advancing in time until it found enough results or sent enough requests.
 
 ```js
 const friedrichstr = '900000100001' // where to get departures
@@ -38,15 +37,15 @@ depsInDirection(friedrichstr, brandenburgerTor)
 .catch(console.error)
 ```
 
-The results will look similar to [those of `vbb-hafas`](https://github.com/derhuerst/vbb-hafas/blob/master/docs/departures.md#response).
+The results will look similar to [those of `vbb-hafas`](https://github.com/derhuerst/vbb-hafas/blob/master/docs/departures.md).
 
 ## API
 
 ```js
-depsInDirection = setup(fetchDepartures, fetchJourneyPart)
+depsInDirection = setup(fetchDepartures, fetchJourneyLeg)
 ```
 
-`fetchDepartures(stationId, opt)` should be API-compatible with [`vbb-hafas.departures`](https://github.com/derhuerst/vbb-hafas/blob/master/docs/departures.md). `fetchJourneyPart(ref, lineName, opt)` should be API-compatible with [`vbb-hafas.journeyPart`](https://github.com/derhuerst/vbb-hafas/blob/master/docs/journey-part.md). Both should return valid [FPTF](https://github.com/public-transport/friendly-public-transport-format).
+`fetchDepartures(stationId, opt)` should be API-compatible with [`vbb-hafas.departures`](https://github.com/derhuerst/vbb-hafas/blob/master/docs/departures.md). `fetchJourneyLeg(ref, lineName, opt)` should be API-compatible with [`vbb-hafas.journeyLeg`](https://github.com/derhuerst/vbb-hafas/blob/master/docs/journey-leg.md). Both should return valid [*FPTF* `1.0.1`](https://github.com/public-transport/friendly-public-transport-format/blob/1.0.1/spec/readme.md).
 
 ```js
 depsInDirection(station, direction, [opt])
