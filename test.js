@@ -32,7 +32,7 @@ test('depsInDirection', (t) => {
 	.then((deps) => {
 		t.ok(Array.isArray(deps))
 		t.ok(deps.length > 0)
-		// t.deepEqual(deps, deps.sort((a, b) => t.when > b.when))
+		t.deepEqual(deps, deps.sort((a, b) => t.when > b.when))
 
 		for (let dep of deps) {
 			t.equal(typeof dep.journeyId, 'string')

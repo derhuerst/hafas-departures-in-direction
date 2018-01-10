@@ -29,7 +29,7 @@
 		"luxon": "^0.2.11",
 		"tap-min": "^1.2.1",
 		"tape": "^4.8.0",
-		"vbb-hafas": "^4.0.0-alpha.3"
+		"vbb-hafas": "^4.0.0"
 	},
 	"scripts": {
 		"test": "node test.js | tap-min",
