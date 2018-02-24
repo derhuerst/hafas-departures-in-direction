@@ -1,7 +1,6 @@
 'use strict'
 
-const departures = require('vbb-hafas/lib/departures')
-const journeyPart = require('vbb-hafas/lib/journey-part')
+const {departures, journeyLeg} = require('vbb-hafas')
 
 const setup = require('.')
 
@@ -12,7 +11,7 @@ const nauenerPlatz = '900000009201'
 const ostbahnhof = '900000120005'
 const jannowitzbruecke = '900000100004'
 
-const depsInDirection = setup(departures, journeyPart)
+const depsInDirection = setup(departures, journeyLeg)
 
 depsInDirection(friedrichstr, brandenburgerTor)
 // depsInDirection(leopoldplatz, nauenerPlatz)
