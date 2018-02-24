@@ -19,6 +19,11 @@ const setup = (departures, journeyLeg) => {
 			const res = []
 			const queue = new Queue({concurrency: opt.concurrency})
 
+			const onError = (err) => {
+				nay(err)
+				queue.clear()
+			}
+
 			let when = Date.now()
 			if (opt.when) {
 				if (Number.isNaN(+opt.when)) throw new Error('invalid when parameter')
@@ -38,7 +43,7 @@ const setup = (departures, journeyLeg) => {
 				})
 				.catch((err) => {
 					// todo: retry
-					if (!err.statusCode) nay(err) // ignore HTTP errors
+					if (!err.statusCode) throw err // ignore HTTP errors
 				})
 			}
 
@@ -49,7 +54,7 @@ const setup = (departures, journeyLeg) => {
 
 				departures(station, _opt)
 				.then((deps) => {
-					for (let dep of deps) queue.add(checkDep(dep))
+					for (let dep of deps) queue.add(checkDep(dep)).catch(onError)
 					return queue.onEmpty()
 				})
 				.then(() => {
