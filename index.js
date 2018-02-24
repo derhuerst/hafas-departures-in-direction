@@ -12,6 +12,13 @@ const defaults = {
 }
 
 const setup = (departures, journeyLeg) => {
+	if ('function' !== typeof departures) {
+		throw new Error('departures must be a function.')
+	}
+	if ('function' !== typeof journeyLeg) {
+		throw new Error('journeyLeg must be a function.')
+	}
+
 	const depsInDirection = (station, direction, opt = {}) => {
 		return new Promise((yay, nay) => {
 			opt = Object.assign({}, defaults, opt)
@@ -34,7 +41,16 @@ const setup = (departures, journeyLeg) => {
 			const checkDep = (dep) => () => {
 				if (stop) return Promise.resolve()
 
-				return journeyLeg(dep.journeyId, dep.line.name, {when})
+				const journeyId = dep.journeyId
+				if (journeyId === null || journeyId === undefined) {
+					return Promise.reject(new Error('Missing dep.journeyId.'))
+				}
+				const lineName = dep.line && dep.line.name
+				if (lineName === null || lineName === undefined) {
+					return Promise.reject(new Error('Missing dep.line.name.'))
+				}
+
+				return journeyLeg(journeyId, lineName, {when})
 				.then((journey) => {
 					// todo: use stationOf index?
 					const i = journey.passed.findIndex(p => p.station.id === station)
