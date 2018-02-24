@@ -1,7 +1,7 @@
 {
 	"name": "hafas-departures-in-direction",
 	"description": "Pass in a HAFAS client, get departures in a certain direction.",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"main": "index.js",
 	"files": [
 		"index.js"
@@ -23,6 +23,9 @@
 	"dependencies": {
 		"lodash.omit": "^4.5.0",
 		"p-queue": "^2.0.0"
+	},
+	"peerDependencies": {
+		"vbb-hafas": "^4.1.1"
 	},
 	"devDependencies": {
 		"is-roughly-equal": "^0.1.0",
