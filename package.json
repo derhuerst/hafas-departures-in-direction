@@ -25,7 +25,7 @@
 		"p-queue": "^2.0.0"
 	},
 	"peerDependencies": {
-		"vbb-hafas": "^4.1.1"
+		"hafas-client": "^2"
 	},
 	"devDependencies": {
 		"is-roughly-equal": "^0.1.0",
