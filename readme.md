@@ -2,11 +2,12 @@
 
 Pass in a [`hafas-client`](https://github.com/public-transport/hafas-client#hafas-client)-compatible [HAFAS](https://de.wikipedia.org/wiki/HAFAS) API client and **get departures at a station in a certain direction.**
 
+*Note:* **This library is obsolete** because [`hafas-client` now supports querying departures by direction](https://github.com/public-transport/hafas-client/blob/c80f355d47cf5d818df45a3dd7adf895a0178a23/docs/departures.md#departuresstation-opt). Use it directly or [`hafas-collect-departures-at`](https://github.com/derhuerst/hafas-collect-departures-at) to collect departures with any termination logic.
+
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 [![npm version](https://img.shields.io/npm/v/hafas-departures-in-direction.svg)](https://www.npmjs.com/package/hafas-departures-in-direction)
 [![build status](https://img.shields.io/travis/derhuerst/hafas-departures-in-direction.svg)](https://travis-ci.org/derhuerst/hafas-departures-in-direction)
 ![ISC-licensed](https://img.shields.io/github/license/derhuerst/hafas-departures-in-direction.svg)
-[![chat on gitter](https://badges.gitter.im/derhuerst.svg)](https://gitter.im/derhuerst)
-[![support me on Patreon](https://img.shields.io/badge/support%20me-on%20patreon-fa7664.svg)](https://patreon.com/derhuerst)
 
 
 ## Installing
@@ -64,8 +65,3 @@ depsInDirection(station, direction, [opt])
 ```
 
 Returns a `Promise` that resolves with an array of departures.
-
-
-## Contributing
-
-If you have a question or have difficulties using `hafas-departures-in-direction`, please double-check your code and setup first. If you think you have found a bug or want to propose a feature, refer to [the issues page](https://github.com/derhuerst/hafas-departures-in-direction/issues).
