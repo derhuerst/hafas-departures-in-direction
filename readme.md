@@ -1,6 +1,6 @@
 # hafas-departures-in-direction
 
-Pass in a [`vbb-hafas`](https://github.com/derhuerst/vbb-hafas#vbb-hafas)-compatible [HAFAS](https://de.wikipedia.org/wiki/HAFAS) API client and **get departures at a station in a certain direction.**
+Pass in a [`hafas-client`](https://github.com/public-transport/hafas-client#hafas-client)-compatible [HAFAS](https://de.wikipedia.org/wiki/HAFAS) API client and **get departures at a station in a certain direction.**
 
 [![npm version](https://img.shields.io/npm/v/hafas-departures-in-direction.svg)](https://www.npmjs.com/package/hafas-departures-in-direction)
 [![build status](https://img.shields.io/travis/derhuerst/hafas-departures-in-direction.svg)](https://travis-ci.org/derhuerst/hafas-departures-in-direction)
@@ -18,7 +18,7 @@ npm install hafas-departures-in-direction
 
 ## Usage
 
-Pass in your [`vbb-hafas`](https://github.com/derhuerst/vbb-hafas#vbb-hafas)-compatible [HAFAS](https://de.wikipedia.org/wiki/HAFAS) API client. In this case, we're going to use [`vbb-hafas`](https://github.com/derhuerst/vbb-hafas#vbb-hafas) itself:
+Pass in your [`hafas-client`](https://github.com/public-transport/hafas-client#hafas-client)-compatible [HAFAS](https://de.wikipedia.org/wiki/HAFAS) API client. In this case, we're going to use [`vbb-hafas`](https://github.com/derhuerst/vbb-hafas#vbb-hafas):
 
 ```js
 const setup = require('hafas-departures-in-direction')
@@ -38,7 +38,7 @@ depsInDirection(friedrichstr, brandenburgerTor)
 .catch(console.error)
 ```
 
-The results will look similar to [those of `vbb-hafas`](https://github.com/derhuerst/vbb-hafas/blob/master/docs/departures.md).
+The results will look similar to [those of `hafas-client`](https://github.com/public-transport/hafas-client/blob/b6c530915f1bbdcb77d8867372674460dee453c8/docs/departures.md).
 
 ## API
 
@@ -46,7 +46,7 @@ The results will look similar to [those of `vbb-hafas`](https://github.com/derhu
 depsInDirection = setup(fetchDepartures, fetchJourneyLeg)
 ```
 
-`fetchDepartures(stationId, opt)` should be API-compatible with [`vbb-hafas.departures`](https://github.com/derhuerst/vbb-hafas/blob/master/docs/departures.md). `fetchJourneyLeg(ref, lineName, opt)` should be API-compatible with [`vbb-hafas.journeyLeg`](https://github.com/derhuerst/vbb-hafas/blob/master/docs/journey-leg.md). Both should return valid [*FPTF* `1.0.1`](https://github.com/public-transport/friendly-public-transport-format/blob/1.0.1/spec/readme.md).
+`fetchDepartures(stationId, opt)` should be API-compatible with [`hafas-client.departures`](https://github.com/public-transport/hafas-client/blob/b6c530915f1bbdcb77d8867372674460dee453c8/docs/departures.md). `fetchJourneyLeg(ref, lineName, opt)` should be API-compatible with [`hafas-client.journeyLeg`](https://github.com/public-transport/hafas-client/blob/b6c530915f1bbdcb77d8867372674460dee453c8/docs/journey-leg.md). Both should return valid [*FPTF* `1.1.1`](https://github.com/public-transport/friendly-public-transport-format/blob/1.1.1/spec/readme.md).
 
 ```js
 depsInDirection(station, direction, [opt])
