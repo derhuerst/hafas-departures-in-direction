@@ -31,7 +31,7 @@
 		"is-roughly-equal": "^0.1.0",
 		"luxon": "^1.0.0",
 		"tap-min": "^1.2.1",
-		"tape": "^4.8.0",
+		"tape": "4.9.1",
 		"vbb-hafas": "^4.1.1"
 	},
 	"scripts": {
